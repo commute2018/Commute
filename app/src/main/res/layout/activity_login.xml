@@ -6,13 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <include layout="@layout/toolbar" android:id="@+id/login_activity_toolbar"/>
+
     <EditText
         android:id="@+id/login_activity_emailid"
         android:layout_width="346dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/login_activity_password"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
+        android:layout_marginBottom="-125dp"
         android:ems="10"
         android:hint="Email ID"
         android:inputType="textEmailAddress"
@@ -25,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="143dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -39,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="198dp"
+        android:layout_marginTop="224dp"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

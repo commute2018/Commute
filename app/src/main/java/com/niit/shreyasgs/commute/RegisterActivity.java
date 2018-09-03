@@ -3,6 +3,7 @@ package com.niit.shreyasgs.commute;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText emailIDInput;
     private EditText passwordInput;
     private Button registerButton;
+    private Toolbar regiterPageToolbar;
 
     //-----ALL VARIABLE DECLARATIONS HERE------
     String userName,emailID,password;
@@ -40,6 +42,12 @@ public class RegisterActivity extends AppCompatActivity {
         emailIDInput = (EditText)findViewById(R.id.register_activity_emailid);
         passwordInput = (EditText)findViewById(R.id.register_activity_password);
         registerButton = (Button)findViewById(R.id.register_activity_register_button);
+        regiterPageToolbar = (Toolbar)findViewById(R.id.register_activity_toolbar);
+
+        //-------Toolbar changes to be made here-------
+        setSupportActionBar(regiterPageToolbar);
+        getSupportActionBar().setTitle("Register");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //-------REGISTER BUTTON ON CLICK--------
         registerButton.setOnClickListener(new View.OnClickListener() {
