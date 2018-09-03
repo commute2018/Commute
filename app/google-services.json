@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "288609212085",
+    "firebase_url": "https://commuteapp-93fa1.firebaseio.com",
+    "project_id": "commuteapp-93fa1",
+    "storage_bucket": "commuteapp-93fa1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:288609212085:android:e92128666b2b9359",
+        "android_client_info": {
+          "package_name": "com.niit.shreyasgs.commute"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "288609212085-nti5vi5nido7svel1pudb0pj50b44mi1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.niit.shreyasgs.commute",
+            "certificate_hash": "19f73dff0257f72074c716d06df17e9cba00ee5e"
+          }
+        },
+        {
+          "client_id": "288609212085-okmbuvv2jf5b983tg6n44qla727ev4oa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy-EccqzqQ5ONYyXHJz1HyUjJkF1i3IuI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "288609212085-okmbuvv2jf5b983tg6n44qla727ev4oa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
