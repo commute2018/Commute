@@ -8,33 +8,73 @@
 
     <Button
         android:id="@+id/start_activity_create_new_account_button"
-        android:layout_width="wrap_content"
+        android:layout_width="191dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="122dp"
-        android:text="New user ? create new account"
+        android:layout_alignParentStart="true"
+        android:background="#012b72"
+        android:text="Register"
+        android:textColor="#fff"
+        android:textSize="16sp"
         tools:layout_editor_absoluteX="147dp"
         tools:layout_editor_absoluteY="336dp" />
 
     <Button
         android:id="@+id/start_activity_login_button"
-        android:layout_width="wrap_content"
+        android:layout_width="191dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="39dp"
-        android:text="Login to your account"
+        android:layout_alignParentEnd="true"
+        android:background="#012b72"
+        android:text="Login"
+        android:textColor="#fff"
+        android:textSize="16sp"
         tools:layout_editor_absoluteX="147dp"
         tools:layout_editor_absoluteY="413dp" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="195dp"
-        android:layout_height="161dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="90dp"
+        android:layout_height="160dp"
+        android:layout_above="@+id/textView2"
+        android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/car" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="192dp"
+        android:layout_marginStart="73dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:text="Welcome to commuting service."
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="79dp"
+        android:fontFamily="monospace"
+        android:lineSpacingExtra="36sp"
+        android:text="Commute"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#00b9f5"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        android:typeface="monospace" />
+
 </RelativeLayout>
