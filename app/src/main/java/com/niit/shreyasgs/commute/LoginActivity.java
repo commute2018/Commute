@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -28,6 +30,17 @@ public class LoginActivity extends AppCompatActivity {
 
     //-------ALL VARIABLES HERE---------
     String emailID, password;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = loginAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent mainIntent = new Intent(LoginActivity.this , CustomerMapActivity.class);
+            startActivity(mainIntent);
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,21 +68,26 @@ public class LoginActivity extends AppCompatActivity {
                 emailID = emailIDInput.getText().toString();
                 password = passwordInput.getText().toString();
 
-                loginAuth.signInWithEmailAndPassword(emailID, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Intent mainIntent = new Intent(LoginActivity.this , CustomerMapActivity.class);
-                            startActivity(mainIntent);
-                            Toast.makeText(LoginActivity.this , "Logged in successfully ", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }else{
-                            Toast.makeText(LoginActivity.this , "Error logging in try again after sometime", Toast.LENGTH_SHORT).show();
+                if(!TextUtils.isEmpty(emailID) && !TextUtils.isEmpty(password)){
+                    loginAuth.signInWithEmailAndPassword(emailID, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Intent mainIntent = new Intent(LoginActivity.this , CustomerMapActivity.class);
+                                startActivity(mainIntent);
+                                Toast.makeText(LoginActivity.this , "Logged in successfully ", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }else{
+                                Toast.makeText(LoginActivity.this , "Error logging in try again after sometime", Toast.LENGTH_SHORT).show();
 
+                            }
                         }
-                    }
-                });
+                    });
+                }else{
+                    Toast.makeText(LoginActivity.this, "Please fill in the details",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
+
 }

@@ -15,8 +15,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class CustomerMapActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    //-------FIREBASE INSTANCES--------
+    private FirebaseAuth CustomerAuth;
+
+
     //--------MAP DECLARATION-----
     private GoogleMap mMap;
 
@@ -27,6 +33,9 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_map);
+
+        //-----FIREBASE DECLARATIONS------
+        CustomerAuth = FirebaseAuth.getInstance();
         customerMapToolbar = (Toolbar)findViewById(R.id.customer_map_activity_toolbar);
 
         //------toolbar changes to be made here--------
@@ -36,7 +45,7 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-
+    
 
     /**
      * Manipulates the map once available.
