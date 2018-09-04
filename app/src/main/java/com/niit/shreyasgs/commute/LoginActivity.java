@@ -1,5 +1,6 @@
 package com.niit.shreyasgs.commute;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -58,7 +59,10 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            Intent mainIntent = new Intent(LoginActivity.this , CustomerMapActivity.class);
+                            startActivity(mainIntent);
                             Toast.makeText(LoginActivity.this , "Logged in successfully ", Toast.LENGTH_SHORT).show();
+                            finish();
                         }else{
                             Toast.makeText(LoginActivity.this , "Error logging in try again after sometime", Toast.LENGTH_SHORT).show();
 
