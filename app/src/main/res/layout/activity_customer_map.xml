@@ -20,7 +20,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/customer_map_activity_toolbar"
-        tools:context=".CustomerMapActivity" />
+        android:layout_above="@id/customer_map_activity_ride_now_button"
+        tools:context=".CustomerMapActivity"/>
+
+    <EditText
+        android:id="@+id/customer_map_activity_from"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="86dp"
+        android:hint="From"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/customer_map_activity_to"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customer_map_activity_from"
+        android:layout_centerHorizontal="true"
+        android:hint="To"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/customer_map_activity_ride_now_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="Ride now" />
 
 </RelativeLayout>
 
