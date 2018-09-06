@@ -2,9 +2,12 @@ package com.niit.shreyasgs.commute;
 
 import android.Manifest;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -19,8 +22,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -43,6 +57,7 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int PERMISSION_CODE = 1234;
+    private static final int LOCATION_SETTINGS_REQUEST = 1;
 
     //-------FIREBASE INSTANCES--------
     private FirebaseAuth CustomerAuth;
@@ -69,6 +84,7 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_map);
         getLocationPermission();
+
 
         //-----FIREBASE DECLARATIONS------
         CustomerAuth = FirebaseAuth.getInstance();
@@ -157,6 +173,7 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
         }else{
             ActivityCompat.requestPermissions(this , permissions , PERMISSION_CODE);
         }
+
     }
 
     @Override
@@ -186,31 +203,78 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
     }
 
     private void getDeviceLocation(){
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        try{
-            if(locationPermissionGranted){
-                Task location = fusedLocationProviderClient.getLastLocation();
-                location.addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public void onComplete(@NonNull Task task) {
-                        if(task.isSuccessful()){
-                            Location currentLocation = (Location) task.getResult();
-                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
-                            Toast.makeText(CustomerMapActivity.this , "location found", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(CustomerMapActivity.this, "location not found", Toast.LENGTH_SHORT).show();
+            if(checkLocationEnabled()){
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+            try{
+                if(locationPermissionGranted){
+                    Task location = fusedLocationProviderClient.getLastLocation();
+                    location.addOnCompleteListener(new OnCompleteListener() {
+                        @Override
+                        public void onComplete(@NonNull Task task) {
+                            if(task.isSuccessful()){
+                                Location currentLocation = (Location) task.getResult();
+                                moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
+                                Toast.makeText(CustomerMapActivity.this , "location found", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(CustomerMapActivity.this, "location not found", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+                }
+
+            }catch (SecurityException e){
+
             }
-
-        }catch (SecurityException e){
-
+        }else{
+            getDeviceLocationPrompt();
         }
     }
 
     private void moveCamera(LatLng latLng, float zoom){
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+    }
+
+    private void getDeviceLocationPrompt(){
+        LocationRequest mLocationRequest = LocationRequest.create()
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .setInterval(10 * 1000)
+                .setFastestInterval(1 * 1000);
+
+        LocationSettingsRequest.Builder settingsBuilder = new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
+        settingsBuilder.setAlwaysShow(true);
+
+        Task<LocationSettingsResponse>  result = LocationServices.getSettingsClient(this)
+                .checkLocationSettings(settingsBuilder.build());
+
+        result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
+            @Override
+            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
+                try {
+                    LocationSettingsResponse response = task.getResult(ApiException.class);
+                } catch (ApiException ex) {
+                    switch (ex.getStatusCode()) {
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                            try {
+                                ResolvableApiException resolvableApiException = (ResolvableApiException) ex;
+                                resolvableApiException.startResolutionForResult(CustomerMapActivity.this, LOCATION_SETTINGS_REQUEST);
+                            } catch (IntentSender.SendIntentException e) {
+
+                            }
+                            break;
+                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+
+                            break;
+                    }
+                }
+            }
+        });
+    }
+
+    private boolean checkLocationEnabled(){
+        LocationManager locationManager = (LocationManager)getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+        boolean gps_enabled = false;
+        gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        return gps_enabled;
     }
 
 }

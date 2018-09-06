@@ -34,17 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     String emailID, password;
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = loginAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent mainIntent = new Intent(LoginActivity.this , CustomerMapActivity.class);
-            startActivity(mainIntent);
-            finish();
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -101,5 +90,4 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
 }

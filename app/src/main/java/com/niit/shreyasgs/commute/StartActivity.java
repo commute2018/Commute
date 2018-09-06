@@ -6,7 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class StartActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
 
     //----ALL LAYOUT INSTANCES HERE------
     private Button createNewAccount;
@@ -16,6 +21,8 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        mAuth = FirebaseAuth.getInstance();
 
         //------ALL INITIALIZATIONS HERE------
         createNewAccount = (Button)findViewById(R.id.start_activity_create_new_account_button);
@@ -38,5 +45,16 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent mapIntent = new Intent(StartActivity.this, CustomerMapActivity.class);
+            startActivity(mapIntent);
+            finish();
+        }
     }
 }
