@@ -10,7 +10,7 @@
         android:id="@+id/customer_map_activity_toolbar"
         layout="@layout/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="50dp" />
 
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,10 +19,11 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/customer_map_activity_toolbar"
-        android:layout_above="@id/customer_map_activity_ride_now_button"
-        tools:context=".CustomerMapActivity"/>
+        android:layout_height="532dp"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/main_activity_scroll_view"
+        android:layout_below="@+id/customer_map_activity_toolbar"
+        tools:context=".CustomerMapActivity" />
 
     <RelativeLayout
         android:id="@+id/relLayout2_customer_map"
@@ -108,14 +109,6 @@
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/customer_map_activity_ride_now_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:text="Ride now" />
-
     <ImageView
         android:id="@+id/customer_map_activity_find_my_loc"
         android:layout_width="25dp"
@@ -125,6 +118,68 @@
         android:layout_marginEnd="15dp"
         android:layout_marginTop="185dp"
         android:src="@drawable/ic_mylocation" />
+
+    <HorizontalScrollView
+        android:id="@+id/main_activity_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/darkBlue">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/book_auto"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="7.5dp"
+                android:background="@drawable/white_border"
+                android:foregroundGravity="center"
+                android:text="Auto"
+                android:textColor="@color/darkBlue" />
+
+            <Button
+                android:id="@+id/book_micro"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="7.5dp"
+                android:background="@drawable/white_border"
+                android:text="Micro"
+                android:textColor="@color/darkBlue" />
+
+            <Button
+                android:id="@+id/book_prime"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="7.5dp"
+                android:background="@drawable/white_border"
+                android:text="Prime"
+                android:textColor="@color/darkBlue" />
+
+            <Button
+                android:id="@+id/book_share"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="7.5dp"
+                android:background="@drawable/white_border"
+                android:text="Share"
+                android:textColor="@color/darkBlue" />
+
+            <Button
+                android:id="@+id/book_rentals"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="7.5dp"
+                android:background="@drawable/white_border"
+                android:text="Rentals"
+                android:textColor="@color/darkBlue" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
 
 </RelativeLayout>

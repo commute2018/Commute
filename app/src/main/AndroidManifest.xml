@@ -8,7 +8,8 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,7 +29,7 @@
             android:parentActivityName=".StartActivity" />
         <activity
             android:name=".LoginActivity"
-            android:parentActivityName=".StartActivity"></activity>
+            android:parentActivityName=".StartActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -42,8 +43,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".CustomerMapActivity"
-            android:label="@string/title_activity_customer_map"></activity>
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".AccountSettingsActivity"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

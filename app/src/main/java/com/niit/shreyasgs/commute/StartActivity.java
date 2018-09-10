@@ -52,7 +52,7 @@ public class StartActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent mapIntent = new Intent(StartActivity.this, CustomerMapActivity.class);
+            Intent mapIntent = new Intent(StartActivity.this, MainActivity.class);
             startActivity(mapIntent);
             finish();
         }

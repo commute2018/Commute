@@ -105,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         }
                                     });
 
-                                    Intent mapIntent = new Intent(RegisterActivity.this, CustomerMapActivity.class);
+                                    Intent mapIntent = new Intent(RegisterActivity.this, MainActivity.class);
                                     startActivity(mapIntent);
                                     regProgressDialog.dismiss();
                                     finish();

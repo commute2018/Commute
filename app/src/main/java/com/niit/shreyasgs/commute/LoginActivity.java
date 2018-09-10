@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 loginDialog.dismiss();
-                                Intent mainIntent = new Intent(LoginActivity.this , CustomerMapActivity.class);
+                                Intent mainIntent = new Intent(LoginActivity.this , MainActivity.class);
                                 startActivity(mainIntent);
                                 Toast.makeText(LoginActivity.this , "Logged in successfully ", Toast.LENGTH_SHORT).show();
                                 finish();
