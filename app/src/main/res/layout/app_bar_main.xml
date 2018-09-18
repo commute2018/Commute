@@ -18,29 +18,34 @@
             android:background="@drawable/custom_border"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <Button
-                android:id="@+id/customer_book_now_toolbar_button"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:background="@drawable/white_border"
-                android:text="@string/book_now"
-                android:textColor="#012b72" />
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/customer_weekly_book_toolbar_button"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:background="@drawable/custom_border"
-                android:text="@string/weekly"
-                android:textColor="#fff" />
+               <Button
+                   android:id="@+id/customer_weekly_book_toolbar_button"
+                   android:layout_width="wrap_content"
+                   android:layout_height="30dp"
+                   android:layout_alignParentTop="true"
+                   android:layout_toStartOf="@+id/customer_monthly_book_toolbar_button"
+                   android:background="@drawable/white_border"
+                   android:text="@string/weekly"
+                   android:textColor="@color/darkBlue" />
 
-            <Button
-                android:id="@+id/customer_monthly_book_toolbar_button"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:background="@drawable/custom_border"
-                android:text="@string/monthly"
-                android:textColor="#fff" />
+               <Button
+                   android:id="@+id/customer_monthly_book_toolbar_button"
+                   android:layout_width="wrap_content"
+                   android:layout_height="30dp"
+                   android:layout_alignParentEnd="true"
+                   android:layout_alignParentTop="true"
+                   android:layout_marginEnd="88dp"
+                   android:background="@drawable/custom_border"
+                   android:text="@string/monthly"
+                   android:textColor="#fff" />
+
+
+           </RelativeLayout>
+
 
         </android.support.v7.widget.Toolbar>
 

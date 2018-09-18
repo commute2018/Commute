@@ -26,6 +26,50 @@
         tools:context=".CustomerMapActivity" />
 
     <RelativeLayout
+        android:id="@+id/relLayout1_customer_map"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/relLayout2_customer_map"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/white_border"
+        android:elevation="10dp">
+
+        <ImageButton
+            android:id="@+id/customer_map_activity_search_to"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="#fff"
+            android:src="@drawable/ic_search" />
+
+        <AutoCompleteTextView
+            android:id="@+id/customer_map_activity_to"
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@null"
+            android:backgroundTint="#000"
+            android:layout_toLeftOf="@id/customer_map_activity_search_to"
+            android:hint="To"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textColor="#000"
+            android:textColorHint="#464646"
+            android:textColorLink="#000" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/relLayout2_customer_map"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -57,6 +101,8 @@
             android:layout_marginBottom="5dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
+            android:textCursorDrawable="@null"
+            android:backgroundTint="#000"
             android:hint="From"
             android:layout_toLeftOf="@id/customer_map_activity_search_from"
             android:imeOptions="actionSearch"
@@ -68,46 +114,6 @@
     </RelativeLayout>
 
 
-    <RelativeLayout
-        android:id="@+id/relLayout1_customer_map"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/relLayout2_customer_map"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/white_border"
-        android:elevation="10dp">
-
-        <ImageButton
-            android:id="@+id/customer_map_activity_search_to"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="#fff"
-            android:src="@drawable/ic_search" />
-
-        <AutoCompleteTextView
-            android:id="@+id/customer_map_activity_to"
-            android:layout_width="331dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@id/customer_map_activity_search_to"
-            android:hint="To"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:textColor="#000"
-            android:textColorHint="#464646" />
-
-
-    </RelativeLayout>
 
     <ImageView
         android:id="@+id/customer_map_activity_find_my_loc"
@@ -181,6 +187,57 @@
 
     </HorizontalScrollView>
 
+    <EditText
+        android:id="@+id/quote_a_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/customer_map_activity_find_my_loc"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/white_border"
+        android:ems="10"
+        android:hint="Quote a price"
+        android:inputType="numberDecimal"
+        android:padding="5dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:textCursorDrawable="@null"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/select_start_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/quote_a_price"
+        android:layout_below="@+id/relLayout1_customer_map"
+        android:layout_marginLeft="25dp"
+        android:background="@drawable/white_border"
+        android:text="Start Date"
+        android:textColor="#000"
+        android:visibility="invisible"
+        android:clickable="false"/>
+
+    <TextView
+        android:id="@+id/weekly_from_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relLayout1_customer_map"
+        android:layout_toEndOf="@+id/select_start_date"
+        android:background="@drawable/white_border"
+        android:textColor="#000"
+        android:visibility="invisible"
+        android:text="From date :" />
+
+    <TextView
+        android:id="@+id/weekly_to_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/customer_map_activity_find_my_loc"
+        android:layout_toEndOf="@+id/select_start_date"
+        android:background="@drawable/white_border"
+        android:textColor="#000"
+        android:visibility="invisible"
+        android:text="To date :" />
 
 </RelativeLayout>
 
